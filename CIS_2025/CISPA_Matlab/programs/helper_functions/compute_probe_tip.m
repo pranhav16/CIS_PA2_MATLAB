@@ -1,3 +1,7 @@
+%compute_probe_tip.m
+%author: luiza
+% this function calculates the probe tip vector t_G in the probe's local
+% coordinate system
 function p_tip = compute_probe_tip(Gcells_corrected, g_markers, p_post)
     % Gcells_corrected: cell array of corrected marker positions
     % g_markers: N_G x 3, markers in probe coordinates
@@ -9,7 +13,7 @@ function p_tip = compute_probe_tip(Gcells_corrected, g_markers, p_post)
     % Rearrange: R[k] * p_tip = p_post - t[k]
     A = zeros(3 * Nframes, 3);
     b = zeros(3 * Nframes, 1);
-    
+    % loop thorugh corrected pivot frames
     for k = 1:Nframes
         G_current = Gcells_corrected{k};  % N_G x 3
         

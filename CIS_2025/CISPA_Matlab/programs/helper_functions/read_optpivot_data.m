@@ -1,3 +1,6 @@
+%read_optpivot_data.m
+%author: luiza
+% this function reads the -optpivot.txt file
 function [D_frames, H_frames] = read_optpivot_data(filename)
     % Opens and reads the Optical pivot data file
     % D_frames: array for EM base marker data (D_i) for each frame
@@ -17,7 +20,7 @@ function [D_frames, H_frames] = read_optpivot_data(filename)
     ND = header_data(1);
     NH = header_data(2);
     Nframes = header_data(3);
-
+%allocate
     D_frames = cell(1, Nframes);
     H_frames = cell(1, Nframes);
 

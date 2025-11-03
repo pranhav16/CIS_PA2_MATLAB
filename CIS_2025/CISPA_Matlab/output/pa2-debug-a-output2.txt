@@ -1,4 +1,4 @@
-4, C:\_Pranhav\_JHU\2025-2026\CIS\PA_2\CIS_2025\CISPA_Matlab\programs\helper_functions\..\..\OUTPUT\pa2-debug-a-output2.txt
+4, /Users/luiza/Documents/CIS I/CIS_PA2_MATLAB/CIS_2025/CISPA_Matlab/programs/helper_functions/../../OUTPUT/pa2-debug-a-output2.txt
   104.84,   107.54,    57.87
    99.23,   128.33,   120.99
    87.84,    73.47,   159.67

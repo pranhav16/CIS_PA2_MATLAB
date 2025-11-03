@@ -1,3 +1,6 @@
+% read_calreadings.m
+%author: luiza
+% this function reads the -calreadings.txt file
 function [Dcells, Acells, Ccells] = read_calreadings(path)
     thisDir = fileparts(mfilename('fullpath'));
     % Two levels up
@@ -10,11 +13,14 @@ function [Dcells, Acells, Ccells] = read_calreadings(path)
     nums = sscanf(regexprep(header,'[^\d,]',''),'%d,%d,%d,%d');
   end
   Nd = nums(1); Na = nums(2); Nc = nums(3); Nf = nums(4);
+  %print for debugging
   disp(Nd);
   disp(Na);
   disp(Nf);
   disp(Nc);
+  %pre allocate
   Dcells = cell(1,Nf);  Acells = cell(1,Nf);  Ccells = cell(1,Nf);
+  %loop through each frame
   for k = 1:Nf
     Dcells{k} = read_block(fid, Nd);
     Acells{k} = read_block(fid, Na);

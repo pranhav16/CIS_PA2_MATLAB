@@ -1,5 +1,7 @@
+%pivot_calibration.m
+%author: luiza
+% this function performs pivot calibration to find the dimple post location
 function [P_dimple] = pivot_calibration(G_frames)
-    % Performs pivot calibration to find the dimple post location
     thisDir = fileparts(mfilename('fullpath'));
     % Two levels up
     parent2 = fileparts(fileparts((thisDir)));
@@ -30,17 +32,17 @@ function [P_dimple] = pivot_calibration(G_frames)
     A = zeros(3 * Nframes, 6);
     b = zeros(3 * Nframes, 1);
     identity_neg = -eye(3);
-
+%fill A and B
     for k = 1:Nframes
         R_k = rotations{k};
         p_k = translations{k};
-        
+        %populate A with [Rk -I] and B with -pk
         start_row = 3 * (k - 1) + 1;
         A(start_row:start_row+2, 1:3) = R_k;
         A(start_row:start_row+2, 4:6) = identity_neg;
         b(start_row:start_row+2) = -p_k;
     end
-
+%solve using least squares
     x = A \ b;
 
     % The final answer is the last 3 elements of x

@@ -1,3 +1,6 @@
+%read_pivot_data.m
+%author:luiza
+% this function reads the EM pivot data file (*-empivot.txt)
 function [G_frames] = read_pivot_data(filename)
     thisDir = fileparts(mfilename('fullpath'));
     % Two levels up

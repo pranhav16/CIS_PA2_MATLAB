@@ -1,3 +1,6 @@
+% read_ct_fiducials.m
+%author:pranhav
+% this function reads the -ct-fiducials.txt file
 function b_CT = read_ct_fiducials(path)
     thisDir = fileparts(mfilename('fullpath'));
     % Two levels up
@@ -7,7 +10,7 @@ function b_CT = read_ct_fiducials(path)
     fid = fopen(path, 'r');
     assert(fid > 0, 'Cannot open %s', path);
     
-    % Read header line
+    % Read header line, get Nb
     header = fgetl(fid);
     nums = sscanf(header, '%d');
     if isempty(nums)

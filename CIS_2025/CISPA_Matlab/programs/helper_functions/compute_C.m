@@ -1,3 +1,12 @@
+% compute_C.m
+% author: pranhav
+% this function calculates expected EM marker positions (C_expected) and reads raw EM marker positions (Ccells).
+% inputs:
+%   calbody_path (string): file path to the '-calbody.txt' file
+%   calreadings_path (string): file path to the '-calreadings.txt' file.
+%
+% This is used to find the distortion vectors (D = C_expected - C_raw).
+
 function [C_expected,Ccells] = compute_C(calbody_path, calreadings_path)
     thisDir = fileparts(mfilename('fullpath'));
     % Two levels up
@@ -13,14 +22,17 @@ function [C_expected,Ccells] = compute_C(calbody_path, calreadings_path)
   if(~(Nf == numel(Acells)))
       error('D and A do not have the same number of frames');
   end
+  % prep storage
   F_D = cell(1,Nf); 
   F_A = cell(1,Nf);
   C_expected = cell(1,Nf);
+  %loop through frames
   for k = 1:Nf
     Dk = Dcells{k};            % optical-tracker coords (observed)
     Ak = Acells{k};
+    %find Fd and Fa
     [R_dk, t_dk] = find_transformation(d, Dk);   % map Dk -> d
-    [R_ak, t_ak] = find_transformation(a, Ak);   % map Dk -> d
+    [R_ak, t_ak] = find_transformation(a, Ak);   % map Ak -> a
     F_D{k} = eye(4);
     F_A{k} = eye(4);
 
@@ -29,7 +41,7 @@ function [C_expected,Ccells] = compute_C(calbody_path, calreadings_path)
     F_A{k}(1:3,1:3) = R_ak;
     F_A{k}(1:3,4)   = t_ak;
   end
-
+%get inverse of Fd to calculate Cexpected
   for i = 1:Nf
         F_D_inv = [transpose(F_D{i}(1:3,1:3)),-1.*transpose(F_D{i}(1:3,1:3))*F_D{i}(1:3,4);0,0,0,1];
         T = [F_D_inv(1:3,1:3)*F_A{i}(1:3,1:3), F_D_inv(1:3,1:3)*F_A{i}(1:3,4) + F_D_inv(1:3,4); 0,0,0,1];

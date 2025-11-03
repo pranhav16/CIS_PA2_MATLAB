@@ -1,11 +1,15 @@
+%read_block.m
+%author: pranhav
+%this function reads a block of N lines of 3D data from a file, skipping
+%blanks
 function M = read_block(fid, N)
     thisDir = fileparts(mfilename('fullpath'));
     % Two levels up
     parent2 = fileparts(fileparts((thisDir)));
     addpath(genpath(parent2));
-  M = zeros(N,3);
+  M = zeros(N,3); %pre allocate
   i = 1;
-  while i <= N
+  while i <= N %loop until N non blank lines
     ln = fgetl(fid);
     if ~ischar(ln), error('Unexpected EOF'); end
     % skip blank lines

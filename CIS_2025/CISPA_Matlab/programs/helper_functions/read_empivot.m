@@ -1,3 +1,7 @@
+% read_empivot.m
+%author: pranhav
+% this function reads the empivot.txt files
+
 function [Gcells] = read_empivot(path)
     thisDir = fileparts(mfilename('fullpath'));
     % Two levels up
@@ -16,12 +20,11 @@ function [Gcells] = read_empivot(path)
     
     Ng = nums(1);
     Nframes = nums(2);
-    
     fprintf('N_G = %d, N_frames = %d\n', Ng, Nframes);
     
     % Read all frames
-    Gcells = cell(1, Nframes);
-    for k = 1:Nframes
+    Gcells = cell(1, Nframes); %allocate
+    for k = 1:Nframes %lop through each frame
         Gcells{k} = read_block(fid, Ng);
     end
     

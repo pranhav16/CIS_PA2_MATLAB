@@ -1,3 +1,7 @@
+% create_bernstein_matrix.m
+% author: pranhav
+% this function creates the A matrix for the bernstein polynomial least
+% squares
 function A = create_bernstein_matrix(normalized_pos, degree)
     % normalized_pos: N x 3 matrix of positions in [0,1]^3
     % degree: polynomial degree (e.g., 5)

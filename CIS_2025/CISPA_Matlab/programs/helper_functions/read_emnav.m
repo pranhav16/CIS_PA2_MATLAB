@@ -1,3 +1,6 @@
+%read_emnav.m
+%author: pranhav
+%this function reads the EM-nav.txt files
 function [Gcells_nav] = read_emnav(path)
     thisDir = fileparts(mfilename('fullpath'));
     % Two levels up
@@ -20,6 +23,7 @@ function [Gcells_nav] = read_emnav(path)
     
     % Read all navigation frames
     Gcells_nav = cell(1, Nframes);
+    %loop through each frame
     for k = 1:Nframes
         Gcells_nav{k} = read_block(fid, Ng);
     end

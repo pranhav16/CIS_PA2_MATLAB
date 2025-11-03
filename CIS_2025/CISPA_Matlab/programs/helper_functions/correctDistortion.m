@@ -1,3 +1,6 @@
+% correctDistortion.m
+% author: luiza
+% this function applies the bernstein polynomial distortion correction
 function corrected = correctDistortion(raw_point, distortion_coeffs)
     % raw_point: 1x3 or 3x1 vector [qx, qy, qz]
     % distortion_coeffs: structure with .x, .y, .z, .degree, .bbox
