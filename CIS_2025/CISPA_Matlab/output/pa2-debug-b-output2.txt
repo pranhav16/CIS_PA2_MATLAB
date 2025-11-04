@@ -1,0 +1,5 @@
+4, /Users/luiza/Documents/CIS I/CIS_PA2_MATLAB/CIS_2025/CISPA_Matlab/programs/helper_functions/../../OUTPUT/pa2-debug-b-output2.txt
+   74.32,    86.81,    76.21
+   98.02,    78.48,    45.12
+   62.40,   162.78,   136.00
+   35.88,   144.34,   153.11

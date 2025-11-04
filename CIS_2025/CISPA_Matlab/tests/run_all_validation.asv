@@ -1,0 +1,58 @@
+% run_all_validation.m
+%
+% This is the master script to run all validation tests for PA2.
+% Run this single file from the MATLAB command window.
+function run_all_validation
+    fprintf('====================================================\n');
+    fprintf('RUNNING PA2 VALIDATION SUITE (v4 - Patched for /tests)\n');
+    fprintf('====================================================\n\n');
+    
+    % --- Add necessary paths ---
+    % Get the path to this file's directory (.../CISPA_Matlab/tests)
+    testsDir = fileparts(mfilename('fullpath'));
+    % Get the path to the base 'CISPA_Matlab' directory
+    cispaDir = fileparts(testsDir);
+    
+    % Add all subfolders of the 'CISPA_Matlab' directory to the path
+    fprintf('Adding all subfolders of %s to path...\n', cispaDir);
+    addpath(genpath(cispaDir));
+    
+    % --- Test 1: find_transformation (Unit Test) ---
+    fprintf('\n--- Test 1: Unit Test for find_transformation ---\n');
+    test_find_transformation;
+    
+    % --- Test 2: pivot_calibration (Unit Test) ---
+    fprintf('\n--- Test 2: Unit Test for pivot_calibration ---\n');
+    test_pivot_calibration;
+    
+    % --- Test 3: Distortion Correction (Analysis) ---
+    % Use degree 5 as you determined
+    validation_degree = 5;
+    fprintf('\n--- Test 3: Distortion Correction Model Analysis ---\n');
+    fprintf('Running on dataset: debug-c (degree %d)\n', validation_degree);
+    test_distortion_correction('debug', 'c', validation_degree);
+    
+    % --- Test 4: End-to-End Validation ---
+    fprintf('\n--- Test 4: End-to-End Output Validation ---\n');
+    datasets = ['a', 'b', 'c', 'd', 'e', 'f'];
+    results_table = table;
+    
+    for i = 1:length(datasets)
+        letter = datasets(i);
+        fprintf('\nRunning full pipeline for debug-%c (degree %d)...\n', letter, validation_degree);
+        
+        % Run the test, passing the degree
+        rmse = test_end_to_end('debug', letter, validation_degree);
+        
+        % Store results
+        results_table.Dataset(i) = {sprintf('debug-%c', letter)};
+        results_table.RMSE_mm(i) = rmse;
+    end
+    
+    fprintf('\nFinal End-to-End Results:\n');
+    disp(results_table);
+    
+    fprintf('\n====================================================\n');
+    fprintf('VALIDATION SUITE COMPLETE\n');
+    fprintf('====================================================\n');
+end
