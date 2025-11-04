@@ -9,6 +9,18 @@ pa2_run_script.m - Main script that when run calls assignment_2.m. This script a
 
 assignment_2.m - Main function to run the programming assignment.
 
+create_bernstein_matrix.m: Generates the design matrix $\mathbf{A}$ for 3D Bernstein polynomial least squares fitting based on normalized positions and polynomial degree.
+
+compute_C.m: Reads EM calibration data, computes the expected EM marker positions ($\mathbf{C}_{\text{expected}}$), and returns the raw EM marker positions ($\mathbf{C}_{\text{cells}}$).
+
+read_emnav.m: Reads the EM-nav.txt file to extract the raw EM marker positions ($\mathbf{G}_{\text{cells}}$) for each navigation frame.
+
+bernstein_basis.m: Calculates the value of a single 1D Bernstein basis polynomial $\mathbf{B}_{i,n}(t)$ at given parameter values $\mathbf{t}$.correctDistortion.m: Applies the Bernstein polynomial model (defined by coefficients) to a raw EM reading ($\mathbf{q}_{\text{raw}}$) to compute the corrected position.
+
+compute_probe_tip.m: Solves a least-squares problem using multiple corrected pivot frames to determine the probe tip vector ($\mathbf{p}_{\text{tip}}$) in the probe's local coordinate system.
+
+write_output2.m: Writes the final list of calculated navigation positions ($\mathbf{v}_{\text{CT}}$) into the specified output file format.
+
 find_transformation.m - Calculates the rigid transformation (rotation and translation) between two sets of 3D points.
 
 invert_transform.m - Inverts a rigid body transformation.
