@@ -9,17 +9,19 @@ pa2_run_script.m - Main script that when run calls assignment_2.m. This script a
 
 assignment_2.m - Main function to run the programming assignment.
 
-create_bernstein_matrix.m: Generates the design matrix $\mathbf{A}$ for 3D Bernstein polynomial least squares fitting based on normalized positions and polynomial degree.
+create_bernstein_matrix.m: Generates the design matrix for 3D Bernstein polynomial least squares fitting based on normalized positions and polynomial degree.
 
-compute_C.m: Reads EM calibration data, computes the expected EM marker positions ($\mathbf{C}_{\text{expected}}$), and returns the raw EM marker positions ($\mathbf{C}_{\text{cells}}$).
+compute_C.m: Reads EM calibration data, computes the expected EM marker positions and returns the raw EM marker positions.
 
-read_emnav.m: Reads the EM-nav.txt file to extract the raw EM marker positions ($\mathbf{G}_{\text{cells}}$) for each navigation frame.
+read_emnav.m: Reads the EM-nav.txt file to extract the raw EM marker positions for each navigation frame.
 
-bernstein_basis.m: Calculates the value of a single 1D Bernstein basis polynomial $\mathbf{B}_{i,n}(t)$ at given parameter values $\mathbf{t}$.correctDistortion.m: Applies the Bernstein polynomial model (defined by coefficients) to a raw EM reading ($\mathbf{q}_{\text{raw}}$) to compute the corrected position.
+bernstein_basis.m: Calculates the value of a single 1D Bernstein basis polynomial at given parameter values.
 
-compute_probe_tip.m: Solves a least-squares problem using multiple corrected pivot frames to determine the probe tip vector ($\mathbf{p}_{\text{tip}}$) in the probe's local coordinate system.
+correctDistortion.m: Applies the Bernstein polynomial model (defined by coefficients) to a raw EM reading to compute the corrected position.
 
-write_output2.m: Writes the final list of calculated navigation positions ($\mathbf{v}_{\text{CT}}$) into the specified output file format.
+compute_probe_tip.m: Solves a least-squares problem using multiple corrected pivot frames to determine the probe tip vector in the probe's local coordinate system.
+
+write_output2.m: Writes the final list of calculated navigation positions into the specified output file format.
 
 find_transformation.m - Calculates the rigid transformation (rotation and translation) between two sets of 3D points.
 
@@ -39,15 +41,6 @@ read_pivot_data.m - Reads EM pivot data from a file.
 
 compute_transformations.m - Computes the transformations F_D, F_A, and C_expected.
 
-problem4a.m - Solves problem 4a.
-
-problem4b.m - Solves problem 4b.
-
-problem4d.m - Solves problem 4d.
-
-problem5.m - Solves problem 5.
-
-problem6.m - Solves problem 6.
 
 
 
